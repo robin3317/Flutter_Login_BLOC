@@ -18,3 +18,5 @@ class Block extends Object with Validators {
     _password.close();
   }
 }
+
+final block = Block();
