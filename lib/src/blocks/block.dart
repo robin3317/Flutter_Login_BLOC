@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'validators.dart';
+import 'package:rxdart/rxdart.dart';
 
-class Block extends Object with Validators {
+class Bloc extends Object with Validators {
   final _email = StreamController<String>();
   final _password = StreamController<String>();
 
   // Add data to stream
   Stream<String> get eamil => _email.stream.transform(validateEmail);
   Stream<String> get password => _password.stream.transform(validatePassword);
+  Stream<bool> get submitValid =>
+      Observable.combineLatest2(eamil, password, (e, p) => true);
 
   // Change data
   Function(String) get changeEmail => _email.sink.add;
