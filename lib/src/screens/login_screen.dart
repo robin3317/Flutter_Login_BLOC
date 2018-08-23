@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   //helper classes
-  Widget emailField([Bloc bloc]) {
+  Widget emailField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.eamil,
       builder: (context, snapshot) {
@@ -61,7 +61,11 @@ class LoginScreen extends StatelessWidget {
         return RaisedButton(
           child: Text("Login"),
           color: Colors.blue,
-          onPressed: () {},
+          onPressed: snapshot.hasError
+              ? null
+              : () {
+                  print('hi there');
+                },
         );
       },
     );
